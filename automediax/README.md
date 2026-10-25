@@ -47,7 +47,7 @@ To redo only some lines: add `--only 3 7` (line ids). `--steps 16` is about 2x f
 
 - On CPU each line takes 1-3 minutes; a 90-second reel takes about an hour.
 - The clone can only be as good as the recording: noise, echo or a flat delivery carry over.
-- Some English words may come out with Hindi-style pronunciation; regenerate that line or spell it in Devanagari.
+- Some English words may come out with Hindi-style pronunciation; regenerate that line, or try writing it in English letters (or in Devanagari) and compare.
 
 ## AutoMediaX male voice (Day 02)
 
