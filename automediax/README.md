@@ -48,3 +48,16 @@ To redo only some lines: add `--only 3 7` (line ids). `--steps 16` is about 2x f
 - On CPU each line takes 1-3 minutes; a 90-second reel takes about an hour.
 - The clone can only be as good as the recording: noise, echo or a flat delivery carry over.
 - Some English words may come out with Hindi-style pronunciation; regenerate that line or spell it in Devanagari.
+
+## AutoMediaX male voice (Day 02)
+
+Cut the reference from the Day 02 reel and use `automediax/day02_voice.txt` as its transcript:
+
+```powershell
+ffmpeg -i AUTOMEDIAX_Day02_Reel.mp4 -vn -ac 1 -ar 44100 day02.wav
+ffmpeg -i day02.wav -filter_complex "[0:a]asplit=2[x][y];[x]atrim=3.42:12.02,asetpts=PTS-STARTPTS[a];[y]atrim=23.47:28.45,asetpts=PTS-STARTPTS[b];anullsrc=r=44100:cl=mono,atrim=0:0.35[g];[a][g][b]concat=n=3:v=0:a=1" -ar 24000 day02_voice.wav
+python automediax/make_voiceover.py --video Day05.mp4 --script automediax/day05_script.json `
+  --ref day02_voice.wav --ref-text automediax/day02_voice.txt --out Day05_final
+```
+
+Keep the reference at about 14 seconds: longer clips need more than 8 GB RAM on CPU.

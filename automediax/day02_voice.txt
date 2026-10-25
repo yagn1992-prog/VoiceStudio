@@ -1,0 +1,1 @@
+तो problem traffic की नहीं, website की है। Visitor सिर्फ तीन second में decide करता है, कि रुकना है, या back button दबाना है। अगर page load होने में पाँच second लगें, तो आधे लोग वहीं निकल जाते हैं।
