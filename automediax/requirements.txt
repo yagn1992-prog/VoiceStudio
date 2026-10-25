@@ -1,0 +1,6 @@
+transformers>=5.10.0
+accelerate
+pydub
+soundfile
+numpy
+huggingface_hub
