@@ -30,7 +30,9 @@ The first run downloads the OmniVoice model (about 2-3 GB) from Hugging Face.
 ## 3. Write the reel script
 
 Copy `automediax\day04_script.json`. Each line: `id`, `start` (second when its caption appears), `text`.
-Write Hindi in Devanagari and English words in English. Brand names read better spelled out (`ऑटो मीडिया एक्स`).
+Write Hindi in Devanagari and English words in English letters (`clear bio`, `fast DM reply`, `Auto Media X`).
+For natural delivery, write each point as ONE line, number + heading + explanation together
+(`एक, clear bio. क्या करते हो, कहाँ हो…`), not as separate short fragments, which sound read out.
 
 ## 4. Make the reel
 
@@ -51,13 +53,13 @@ To redo only some lines: add `--only 3 7` (line ids). `--steps 16` is about 2x f
 
 ## AutoMediaX male voice (Day 02)
 
-Cut the reference from the Day 02 reel and use `automediax/day02_voice.txt` as its transcript:
+Cut the energetic 12-second hook of the Day 02 reel and use `automediax/day02_voice.txt` as its transcript:
 
 ```powershell
 ffmpeg -i AUTOMEDIAX_Day02_Reel.mp4 -vn -ac 1 -ar 44100 day02.wav
-ffmpeg -i day02.wav -filter_complex "[0:a]asplit=2[x][y];[x]atrim=3.42:12.02,asetpts=PTS-STARTPTS[a];[y]atrim=23.47:28.45,asetpts=PTS-STARTPTS[b];anullsrc=r=44100:cl=mono,atrim=0:0.35[g];[a][g][b]concat=n=3:v=0:a=1" -ar 24000 day02_voice.wav
+ffmpeg -i day02.wav -t 12 -ar 24000 day02_voice.wav
 python automediax/make_voiceover.py --video Day05.mp4 --script automediax/day05_script.json `
   --ref day02_voice.wav --ref-text automediax/day02_voice.txt --out Day05_final
 ```
 
-Keep the reference at about 14 seconds: longer clips need more than 8 GB RAM on CPU.
+Keep the reference at 12-14 seconds: longer clips need more than 8 GB RAM on CPU.
